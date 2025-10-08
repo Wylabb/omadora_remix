@@ -18,10 +18,27 @@ These are provided by the [solopasha/hyprland](https://copr.fedorainfracloud.org
 
 Install the Fedora 42 Custom Operating System base install using the [Everything Network Installer](https://alt.fedoraproject.org/).
 Similar to Omarchy, it is recommended to use drive encryption, disable root, and add a privileged user.
+The installer expects a clean "Core" or "Minimal Install" environment on Fedora/Asahi Fedora Remix
+and will prompt if additional groups are detected.
 
 Install git (`sudo dnf install -y git`) and clone this repo to the `~/.local/share/omadora` directory.
 
 Run `~/.local/share/omadora/install.sh` to install.
+
+### Architecture support
+
+Omadora now supports both `x86_64` and `aarch64` Fedora installations.
+The installer detects the host architecture during the guard checks and
+exports it as `OMADORA_ARCH` for the rest of the installation process.
+
+Package and group lists can be customised per-architecture by creating
+files alongside the defaults, for example
+`install/omadora-base.packages.aarch64` or
+`install/omadora-removed.groups.x86_64`.
+Any entries placed in these files are appended to the common lists and
+are installed or removed only on matching systems. This allows Asahi
+Fedora Remix users to swap in aarch64 specific packages where required
+without impacting x86_64 installations.
 
 ### WiFi only install help
 
